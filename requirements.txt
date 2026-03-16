@@ -1,0 +1,6 @@
+flask
+openai
+azure-search-documents
+gunicorn
+azure-mgmt-compute
+azure-identity
