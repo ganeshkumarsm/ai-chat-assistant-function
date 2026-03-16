@@ -1,5 +1,5 @@
 flask
-openai
+openai>=1.0.0
 azure-search-documents
 gunicorn
 azure-mgmt-compute
