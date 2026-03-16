@@ -53,8 +53,7 @@ tools = [
 "required": ["resource_group","vm_name"]
 }
 }
-}
-
+},
 {
 "type": "function",
 "function": {
@@ -83,7 +82,7 @@ def ask(question):
     messages = [
         {
             "role": "system",
-            "content": "You are an Azure infrastructure assistant."
+            "content": "You are an Azure infrastructure assistant. If the user asks to restart or stop a VM, use the appropriate tool instead of answering in text."
         },
         {
             "role": "user",
