@@ -3,7 +3,7 @@ import config
 from openai import AzureOpenAI
 from azure.search.documents import SearchClient
 from azure.core.credentials import AzureKeyCredential
-from tools import restart_virtual_machine, stop_virtual_machine
+from tools import restart_virtual_machine, stop_virtual_machine, start_virtual_machine
 
 
 # OpenAI client
@@ -59,6 +59,25 @@ tools = [
 "function": {
 "name": "stop_virtual_machine",
 "description": "Stop and deallocate an Azure virtual machine",
+"parameters": {
+"type": "object",
+"properties": {
+"resource_group": {
+"type": "string"
+},
+"vm_name": {
+"type": "string"
+}
+},
+"required": ["resource_group", "vm_name"]
+}
+}
+},
+{
+"type": "function",
+"function": {
+"name": "start_virtual_machine",
+"description": "Start an Azure virtual machine",
 "parameters": {
 "type": "object",
 "properties": {
@@ -158,5 +177,26 @@ Question:
             )
 
             return final.choices[0].message.content
+        elif tool_call.function.name == "start_virtual_machine":
+
+            args = json.loads(tool_call.function.arguments)
+
+            result = start_virtual_machine(
+                args["resource_group"],
+                args["vm_name"]
+            )
+
+            messages.append(message)
+
+            messages.append({
+                "role": "tool",
+                "tool_call_id": tool_call.id,
+                "content": result
+            })
+
+            final = client.chat.completions.create(
+                model=config.CHAT_MODEL,
+                messages=messages
+            )
 
     return message.content
