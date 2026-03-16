@@ -22,7 +22,6 @@ def restart_virtual_machine(resource_group, vm_name):
     )
 
     return f"Restart initiated for VM {vm_name}"
-<<<<<<< HEAD
 
 def stop_virtual_machine(resource_group, vm_name):
 
@@ -32,5 +31,3 @@ def stop_virtual_machine(resource_group, vm_name):
     )
 
     return f"Shutdown initiated for virtual machine {vm_name}"
-=======
->>>>>>> 39a73491f5e7b181e1717ba963bd02a205fa73e1
