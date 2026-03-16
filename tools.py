@@ -14,11 +14,11 @@ compute_client = ComputeManagementClient(
 
 def restart_virtual_machine(resource_group, vm_name):
 
-    poller = compute_client.virtual_machines.begin_restart(
+    compute_client.virtual_machines.begin_restart(
         resource_group,
         vm_name
     )
 
-    poller.result()
+
 
     return f"Virtual machine {vm_name} restarted successfully."
