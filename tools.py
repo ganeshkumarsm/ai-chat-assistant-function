@@ -22,3 +22,12 @@ def restart_virtual_machine(resource_group, vm_name):
     )
 
     return f"Restart initiated for VM {vm_name}"
+
+def stop_virtual_machine(resource_group, vm_name):
+
+    compute_client.virtual_machines.begin_deallocate(
+        resource_group,
+        vm_name
+    )
+
+    return f"Shutdown initiated for virtual machine {vm_name}"
