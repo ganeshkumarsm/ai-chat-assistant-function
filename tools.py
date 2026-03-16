@@ -31,3 +31,12 @@ def stop_virtual_machine(resource_group, vm_name):
     )
 
     return f"Shutdown initiated for virtual machine {vm_name}"
+
+def start_virtual_machine(resource_group, vm_name):
+
+    compute_client.virtual_machines.begin_start(
+        resource_group,
+        vm_name
+    )
+
+    return f"Start initiated for virtual machine {vm_name}"
